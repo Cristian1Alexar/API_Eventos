@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"evento\": {\r\n    \t\"nombre\": \"ABCD\",\r\n        \"lugar\" :\"ABCD\",\r\n        \"fecha\" : \"ABCD\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"evento\": {\r\n    \t\"nombre\": \"Pelicula\",\r\n        \"lugar\" : \"Huehuetenango\",\r\n        \"fecha\" : \"10 de noviembre\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,7 +40,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/evento/lista",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"evento",
+						"lista"
+					]
 				}
 			},
 			"response": []
@@ -51,7 +60,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/evento/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"evento",
+						"2"
+					]
 				}
 			},
 			"response": []
@@ -59,10 +77,28 @@
 		{
 			"name": "Crear Localidad",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"localidad\": {\r\n    \"nombre\": \"Preferencia\"\r\n    }\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/localidad/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"localidad",
+						"crear"
+					]
 				}
 			},
 			"response": []
@@ -70,10 +106,27 @@
 		{
 			"name": "Asignar",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"localidad\": {\r\n        \"id\" : 2\r\n        },\r\n     \"evento\":{\r\n        \"id\":2\r\n }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/asignar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"asignar"
+					]
 				}
 			},
 			"response": []
