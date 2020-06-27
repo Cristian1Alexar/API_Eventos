@@ -2,7 +2,7 @@
 <actions>
     <action>
         <actionName>run</actionName>
-        <packagings>
+        <packagings> 
             <packaging>jar</packaging>
         </packagings>
         <goals>

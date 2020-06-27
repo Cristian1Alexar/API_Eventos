@@ -9,6 +9,7 @@ import com.proyecto.eventos.entity.Localidad;
 import com.proyecto.eventos.repository.LocalidadRepository;
 import com.proyecto.eventos.request.LocalidadRequest;
 import com.proyecto.eventos.response.LocalidadResponse;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,5 +40,10 @@ public class LocalidadController {
         LocalidadResponse response = new LocalidadResponse("ok", request.localidad);
         return response;
     }
-    
+    @RequestMapping(
+            value = "localidad/lista",
+            method = RequestMethod.GET)
+    public List<Localidad> getAllLocalidades() throws Error {
+        return localidadRepository.findAll();
+    }
 }
