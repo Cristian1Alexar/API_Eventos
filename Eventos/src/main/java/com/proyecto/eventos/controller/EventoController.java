@@ -5,11 +5,18 @@
  */
 package com.proyecto.eventos.controller;
 
+import com.proyecto.eventos.actions.ListarEventos;
+import com.proyecto.eventos.dto.ListaEventosDTO;
 import com.proyecto.eventos.entity.Evento;
+import com.proyecto.eventos.entity.Localidad;
+import com.proyecto.eventos.entity.LocalidadEvento;
 import com.proyecto.eventos.repository.EventoRepository;
 import com.proyecto.eventos.request.EventoRequest;
 import com.proyecto.eventos.exceptions.EventoNotFoundException;
+import com.proyecto.eventos.repository.LocalidadEventoRepository;
+import com.proyecto.eventos.repository.LocalidadRepository;
 import com.proyecto.eventos.response.EventoResponse;
+import com.proyecto.eventos.response.ListaEventosResponse;
 import java.net.http.HttpResponse;
 import java.util.List;
 import org.apache.catalina.connector.Response;
@@ -34,6 +41,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class EventoController {
     @Autowired
     EventoRepository eventoRepository;
+    @Autowired
+    LocalidadRepository localidadRepository;
+    @Autowired 
+    LocalidadEventoRepository localidadeventoRepository;
     
     @RequestMapping(
             value = "evento/crear",
@@ -49,15 +60,19 @@ public class EventoController {
         nevento.setLugar(request.evento.lugar);
         nevento.setFecha(request.evento.fecha);
         eventoRepository.save(nevento);
-        EventoResponse response = new EventoResponse("ok", request.evento, null);
+        EventoResponse response = new EventoResponse("ok", request.evento);
         return response;
     }
     
     @RequestMapping(
             value = "evento/lista",
             method = RequestMethod.GET)
-    public List<Evento> getAllEventos() {
-        return eventoRepository.findAll();
+    public ListaEventosResponse getAllEventos() throws Error {
+        List<Localidad> localidades = localidadRepository.findAll(); 
+        List<LocalidadEvento> asignacion = localidadeventoRepository.findAll(); 
+        List<Evento> eventos = eventoRepository.findAll();
+        ListarEventos l = new ListarEventos(localidades, asignacion, eventos);      
+        return l.listar();
     }
     @GetMapping("evento/{id}")
     public Evento getEventoById(@PathVariable(value = "id") Integer eventoId) throws EventoNotFoundException {

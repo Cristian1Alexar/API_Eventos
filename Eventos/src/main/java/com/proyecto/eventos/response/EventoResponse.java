@@ -20,13 +20,10 @@ public class EventoResponse {
     private String response;
     @JsonProperty("evento")
     private EventoDTO evento;
-    @JsonProperty("localidades")
-    private List <Localidad> localidades;
 
-    public EventoResponse(String response, EventoDTO evento, List<Localidad> localidades) {
+    public EventoResponse(String response, EventoDTO evento) {
         this.response = response;
         this.evento = evento;
-        this.localidades = localidades;
     }
     
     
