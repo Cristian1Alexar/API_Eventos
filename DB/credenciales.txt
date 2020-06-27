@@ -1,0 +1,2 @@
+Usuario de la Base de Datos: proyecto
+Contraseña: 1234
