@@ -37,12 +37,16 @@ public class LocalidadEvento implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "idEvento")
+    @Column(name = "id_evento")
     private Integer idEvento;
-    @Column(name = "idLocalidad")
+    @Column(name = "id_localidad")
     private Integer idLocalidad;
 
     public LocalidadEvento() {
+    }
+    public LocalidadEvento(Integer idEvento, Integer idLocalidad) {
+        this.idEvento = idEvento; 
+        this.idLocalidad = idLocalidad;
     }
 
     public LocalidadEvento(Integer id) {
